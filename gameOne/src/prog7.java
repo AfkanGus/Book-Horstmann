@@ -50,28 +50,37 @@ class Panel extends JPanel {
     public Panel() {
         addKeyListener(new myKey());
         setFocusable(true);
-        Timer nt = new Timer(25, new ActionListener() {
+        Timer nt = new Timer(1, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (napr == 0) x--;
-                if (napr == 1) y--;
-                if (napr == 2) x++;
-                if (napr == 3) y++;
+                if (napr == 0) x -= 3;
+                {
+                    x -= 3;
+                    y -= 3;
+                }
+                if (napr == 1) y -= 3;
+                if (napr == 2) x += 3;
+                {
+                    x += 2;
+                    y += 2;
+                }
+                if (napr == 3) y += 3;
                 repaint();
             }
         });
         nt.start();
         try {
-            img = ImageIO.read(new File("C://Users//afkan//Downloads/X.gif"));
+            img = ImageIO.read(new File("C://Users//af//Downloads/X.gif"));
         } catch (IOException exp) {
             System.out.println("NO pic");
         }
     }
-        public void paintComponent (Graphics gr){
-            gr.clearRect(x - 1, y - 1, img.getWidth(null) + 1, img.getHeight(null) + 1);
-            gr.drawImage(img, x, y, null);
-        }
+
+    public void paintComponent(Graphics gr) {
+        gr.clearRect(x - 3, y - 3, img.getWidth(null) + 3, img.getHeight(null) + 3);
+        gr.drawImage(img, x, y, x, y, null);
     }
+}
 
 
 
